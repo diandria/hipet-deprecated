@@ -5,7 +5,7 @@ Para inicializar voce precisa necessáriamente ter instalado na sua maquina o mo
 Em seguida rode o comando `npm i`
 
 Para testar de o seguinte comando `npm start`, o servidor vai ser inicializado em http://localhost:5050/
-Todas as rotas estão configuradas dentro de /api então a rota de teste esta disponivel em http://localhost:5050/api/teste
+Todas as rotas estão configuradas dentro de /api então a rota de teste (versão) esta disponivel em http://localhost:5050/api/version
 
 Para instalar o mock do mongoBd rode o comando `npm test` o download deve começar de forma automatica
 
@@ -25,4 +25,6 @@ refactor: modifiquei essa desgraca
 ou
 test: tdd reina
 ou
-doc: documenta essa pfvvvvvvv```
+doc: documenta essa pfvvvvvvv
+ou
+fix: tava bugado```
