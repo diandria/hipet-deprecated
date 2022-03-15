@@ -1,1 +1,1 @@
-export * from './version-controller'
+export * from './apresentation/version-controller'
