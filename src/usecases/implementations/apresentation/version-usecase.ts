@@ -1,4 +1,4 @@
-import { VersionContract } from '../contracts'
+import { VersionContract } from '../../contracts'
 
 export class VersionUseCase implements VersionContract {
   execute (): any {

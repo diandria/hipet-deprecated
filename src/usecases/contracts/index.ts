@@ -1,1 +1,2 @@
-export * from './version-contract'
+// apresentation contracts
+export * from './apresentation/version-contract'
