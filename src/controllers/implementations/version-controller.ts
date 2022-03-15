@@ -1,16 +1,15 @@
-import { Teste } from '../../usecases/contracts/teste-contract'
+import { VersionContract } from '../../usecases/contracts'
 import { HttpController, HttpResponse } from '../contracts'
 import { success, serverError } from '../helpers/http-helpers'
 
-export class TesteController implements HttpController {
+export class VersionController implements HttpController {
   constructor (
-    private readonly teste: Teste
+    private readonly versionUseCase: VersionContract
   ) { }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
   async handle (): Promise<HttpResponse> {
     try {
-      const result = this.teste.execute()
+      const result = this.versionUseCase.execute()
       return success(result)
     } catch (error) {
       console.error(error)
