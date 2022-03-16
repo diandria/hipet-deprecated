@@ -1,1 +1,1 @@
-export * from './version-factory'
+export * from './apresentation/version-factory'
