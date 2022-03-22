@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '../config/app'
+import app from '../../../../config/web/config/app'
 
 describe('Apresentation Routes', () => {
   test('Should return an account on sucess', async () => {
