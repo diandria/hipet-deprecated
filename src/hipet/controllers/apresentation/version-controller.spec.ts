@@ -1,5 +1,5 @@
 import { VersionController } from './version-controller'
-import { VersionUseCase } from '../../../usecases/implementations'
+import { VersionUseCase } from '../../usecases/implementations'
 
 const makeVersionUseCase = (): VersionUseCase => {
   class VersionUseCaseStub implements VersionUseCase {
