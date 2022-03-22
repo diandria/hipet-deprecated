@@ -1,6 +1,6 @@
-import { HttpController, HttpResponse } from '../../../config/controllers/contracts'
-import { serverError, success } from '../../../config/controllers/helpers/http-helpers'
-import { ApresentationUseCasesInterface } from '../../usecases/contracts'
+import { HttpController, HttpResponse } from '../../../../config/controllers/contracts'
+import { serverError, success } from '../../../../config/controllers/helpers/http-helpers'
+import { ApresentationUseCasesInterface } from '../../../usecases/contracts'
 
 export class VersionController implements HttpController {
   constructor (

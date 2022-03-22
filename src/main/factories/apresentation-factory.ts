@@ -1,4 +1,4 @@
-import { VersionController } from '../../controllers'
+import { VersionController } from '../../hipet/controllers'
 import { ApresentationUseCases } from '../../usecases/implementations'
 
 export const makeVersionController = (): VersionController => {
