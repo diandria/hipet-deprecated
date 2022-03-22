@@ -1,7 +1,7 @@
 import { VersionController } from './version-controller'
 import { ServerError } from '../../errors'
 import { success, serverError } from '../../helpers/http-helpers'
-import { VersionUseCase } from '../../../usecases/implementations'
+import { VersionUseCase } from '../../usecases/implementations'
 
 const makeVersionUseCase = (): VersionUseCase => {
   class VersionUseCaseStub implements VersionUseCase {
