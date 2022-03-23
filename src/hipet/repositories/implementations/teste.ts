@@ -1,5 +1,5 @@
-import { AgentsRepository } from '../../contracts/agents-repository-contract'
-import { MongoHelper } from '../../helpers/mongodb/mongo-helper'
+import { AgentsRepository } from '../interfaces/agents-repository-interface'
+import { MongoHelper } from '../../../../config/repository/helpers/mongodb/mongo-helper'
 
 export class MongoAgentsRepository implements AgentsRepository {
   async add (): Promise<any> {
