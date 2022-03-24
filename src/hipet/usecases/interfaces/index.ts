@@ -1,2 +1,2 @@
-// apresentation contracts
 export * from './apresentation-interface'
+export * from './user-usecases-interface'
