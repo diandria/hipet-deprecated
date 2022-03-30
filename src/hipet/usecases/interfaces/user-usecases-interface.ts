@@ -13,7 +13,9 @@ export type UserRequest={
 // create user helpers
 export enum CreateUserResultStatusOptions {
   success = 'SUCCESS',
-  repository_error = 'REPOSITORY_ERROR'
+  repository_error = 'REPOSITORY_ERROR',
+  login_error = 'LOGIN_ERROR',
+
 }
 
 export type CreateUserResult = {
