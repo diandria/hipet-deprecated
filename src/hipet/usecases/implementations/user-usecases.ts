@@ -1,6 +1,7 @@
-import { User } from '../../entities'
+import { UserDTO } from '../../repositories/models'
 import { UserRepository } from '../../repositories/interfaces'
-import { CreateUserResult, CreateUserResultStatusOptions, UserUseCasesInterface } from '../interfaces'
+import { CreateUserResult, CreateUserResultStatusOptions, UserUseCasesInterface, UserRequest} from '../interfaces'
+
 
 type Dependencies = {
   userRepository: UserRepository
@@ -13,26 +14,26 @@ export class UserUseCases implements UserUseCasesInterface {
     this.userRepository = dependencies.userRepository
   }
 
-  async createUser (name: string, email: string, password: string, phoneNumber: string): Promise<CreateUserResult> {
-    const user = new User()
+  async saveUser(userRequest: UserRequest): Promise<CreateUserResult> {
+    const userDTO = new UserDTO()
 
-    user.name = name
-    user.email = email
-    user.password = password
-    user.phoneNumber = phoneNumber
+    userDTO.name = userRequest.name
+    userDTO.email = userRequest.email
+    userDTO.password = userRequest.password
+    userDTO.phoneNumber = userRequest.phoneNumber
+    userDTO.document = userRequest.document
+    userDTO.nickName = userRequest.nickName
 
-    const createdUser = await this.userRepository.add(user)
+    const createdUser = await this.userRepository.add(userDTO)
 
     if (!createdUser) {
       return {
-        status: CreateUserResultStatusOptions.repository_error,
-        user: null
+        status: CreateUserResultStatusOptions.repository_error
       }
     }
 
     return {
-      status: CreateUserResultStatusOptions.success,
-      user: createdUser
+      status: CreateUserResultStatusOptions.success
     }
   }
 }

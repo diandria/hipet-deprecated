@@ -10,7 +10,7 @@ export class CreateUserController implements HttpController {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requestData = httpRequest.body
-      const result = await this.userUseCases.createUser(requestData.name, requestData.email, requestData.password, requestData.phoneNumber)
+      const result = await this.userUseCases.saveUser(requestData)
       return success(result)
     } catch (error) {
       console.error(error)

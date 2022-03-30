@@ -23,7 +23,7 @@ describe('User - Use Case', () => {
       const { sut, userRepositoryStub } = makeSut()
       jest.spyOn(userRepositoryStub, 'add').mockImplementationOnce(() => null)
 
-      const createUserResult = await sut.createUser('any_name', 'any_email@mail.com', 'any_password_123', '(00) 1234-5678')
+      const createUserResult = await sut.saveUser('any_name', 'any_email@mail.com', 'any_password_123', '(00) 1234-5678')
       expect(createUserResult).toEqual({
         status: CreateUserResultStatusOptions.repository_error,
         user: null
@@ -32,7 +32,7 @@ describe('User - Use Case', () => {
 
     test('Should return SUCCESS status and the correct data user', async () => {
       const { sut } = makeSut()
-      const createUserResult = await sut.createUser('any_name', 'any_email@mail.com', 'any_password_123', '(00) 1234-5678')
+      const createUserResult = await sut.saveUser('any_name', 'any_email@mail.com', 'any_password_123', '(00) 1234-5678')
 
       expect(createUserResult).toEqual({
         status: CreateUserResultStatusOptions.success,

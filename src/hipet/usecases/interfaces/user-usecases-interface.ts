@@ -1,5 +1,15 @@
 import { User } from '../../entities'
 
+export type UserRequest={
+  name: string
+  document: string 
+  email: string
+  phoneNumber: string
+  password: string
+  nickName: string  
+}
+
+
 // create user helpers
 export enum CreateUserResultStatusOptions {
   success = 'SUCCESS',
@@ -8,10 +18,10 @@ export enum CreateUserResultStatusOptions {
 
 export type CreateUserResult = {
   status: CreateUserResultStatusOptions
-  user: User
+  
 }
 
 // interfaces
 export interface UserUseCasesInterface {
-  createUser: (name: string, email: string, password: string, phoneNumber: string) => Promise<CreateUserResult>
+  saveUser: (userRequest: UserRequest) => Promise<CreateUserResult>
 }

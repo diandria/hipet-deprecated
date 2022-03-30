@@ -1,11 +1,11 @@
 import { UserRepository } from '../interfaces/user-repository-interface'
 import { MongoHelper } from '../../../../config/repository/helpers/mongodb/mongo-helper'
-import { User } from '../../entities'
+import { UserDTO } from '../models'
 
 export class MongoUserRepository implements UserRepository {
-  async add (user: User): Promise<User> {
+  async add (user: UserDTO): Promise<UserDTO> {
     try {
-      return await MongoHelper.addBy(user, 'users')
+      return await MongoHelper.addBy(user, 'Users')
     } catch (err) {
       return null
     }
