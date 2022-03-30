@@ -1,7 +1,7 @@
-import { ServerError } from '../../../../config/controllers/errors'
-import { serverError, success } from '../../../../config/controllers/helpers/http-helpers'
-import { VersionController } from '../../../hipet/controllers/apresentation/version-controller'
-import { ApresentationUseCases } from '../../../hipet/usecases/implementations'
+import { ServerError } from '../../../../../config/controllers/errors'
+import { serverError, success } from '../../../../../config/controllers/helpers/http-helpers'
+import { VersionController } from '../../../../hipet/controllers/apresentation/version-controller'
+import { ApresentationUseCases } from '../../../../hipet/usecases/implementations'
 
 const makeApresentationUseCases = (): ApresentationUseCases => {
   class ApresentationUseCasesStub implements ApresentationUseCases {
