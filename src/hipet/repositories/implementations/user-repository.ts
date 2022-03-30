@@ -5,9 +5,7 @@ import { User } from '../../entities'
 export class MongoUserRepository implements UserRepository {
   async add (user: User): Promise<User> {
     try {
-      const accountCollection = await MongoHelper.getCollection('users')
-      const result = await accountCollection.insertOne(user)
-      return MongoHelper.map(result.ops[0])
+      return await MongoHelper.addBy(user, 'users')
     } catch (err) {
       return null
     }
