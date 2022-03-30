@@ -11,7 +11,6 @@ export const makeCreateUserController = (): CreateUserController => {
   return new CreateUserController(userUseCases)
 }
 
-
 export const makeLoginUserController = (): LoginUserController => {
   const userRepository = new MongoUserRepository()
   const loginUseCases = new LoginUserUseCase({ userRepository })

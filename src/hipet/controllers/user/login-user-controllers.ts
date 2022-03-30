@@ -1,6 +1,5 @@
 import { HttpController, HttpRequest, HttpResponse } from '../../../../config/controllers/contracts'
 import { serverError, success } from '../../../../config/controllers/helpers/http-helpers'
-import { UserUseCasesInterface } from '../../usecases/interfaces'
 import { LoginUserUseCasesInterface } from '../../usecases/interfaces/login-user-interface'
 
 export class LoginUserController implements HttpController {

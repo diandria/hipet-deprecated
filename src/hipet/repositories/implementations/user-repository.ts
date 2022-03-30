@@ -11,10 +11,10 @@ export class MongoUserRepository implements UserRepository {
     }
   }
 
-  async findUser(emailUser: string): Promise<UserDTO> {
+  async findUser (emailUser: string): Promise<UserDTO> {
     try {
-      return await MongoHelper.findBy("email" , emailUser , "Users")
-    }catch(err){
+      return await MongoHelper.findBy('email', emailUser, 'Users')
+    } catch (err) {
       return null
     }
   }
