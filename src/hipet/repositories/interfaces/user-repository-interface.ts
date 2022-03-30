@@ -1,5 +1,5 @@
-import { User } from '../../entities'
+import { UserDTO } from '../models'
 
 export interface UserRepository {
-  add(user: User): Promise<User>
+  add(user: UserDTO): Promise<UserDTO>
 }
