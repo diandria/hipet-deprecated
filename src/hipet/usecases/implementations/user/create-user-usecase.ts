@@ -6,7 +6,7 @@ type Dependencies = {
   userRepository: UserRepository
 }
 
-export class UserUseCases implements CreateUserUseCaseInterface {
+export class CreateUserUseCase implements CreateUserUseCaseInterface {
   private readonly userRepository: UserRepository
 
   constructor (dependencies: Dependencies) {

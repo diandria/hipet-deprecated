@@ -13,6 +13,6 @@ export type LoginUserResult = {
   status: LoginUserResultStatusOptions
 }
 // interfaces
-export interface LoginUserUseCasesInterface {
+export interface LoginUserUseCaseInterface {
   login: (loginRequest: LoginRequest) => Promise<LoginUserResult>
 }

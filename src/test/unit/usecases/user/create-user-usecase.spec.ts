@@ -1,5 +1,5 @@
 import { UserRepository } from '../../../../hipet/repositories/interfaces'
-import { UserUseCases } from '../../../../hipet/usecases/implementations'
+import { CreateUserUseCase } from '../../../../hipet/usecases/implementations'
 import { CreateUserResultStatusOptions, CreateUserUseCaseInterface } from '../../../../hipet/usecases/interfaces'
 import { UserRepositoryStub } from '../../../mocks/repositories'
 
@@ -10,7 +10,7 @@ interface SutTypes {
 
 const makeSut = (): SutTypes => {
   const userRepositoryStub = new UserRepositoryStub()
-  const sut = new UserUseCases({ userRepository: userRepositoryStub })
+  const sut = new CreateUserUseCase({ userRepository: userRepositoryStub })
   return {
     sut,
     userRepositoryStub
