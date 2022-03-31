@@ -13,7 +13,7 @@ export class LoginUserUseCase implements LoginUserUseCasesInterface {
   }
 
   async login (loginRequest: LoginRequest): Promise<LoginUserResult> {
-    const user = await this.userRepository.findUser(loginRequest.email)
+    const user = await this.userRepository.findUserByEmail(loginRequest.email)
 
     if (!user || user.password !== loginRequest.password) {
       return {
