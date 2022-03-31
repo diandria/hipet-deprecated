@@ -1,16 +1,16 @@
 import { UserRepository } from '../../../../hipet/repositories/interfaces'
-import { UserUseCases } from '../../../../hipet/usecases/implementations'
-import { CreateUserResultStatusOptions, CreateUserUseCaseInterface } from '../../../../hipet/usecases/interfaces'
+import { LoginUserUseCase } from '../../../../hipet/usecases/implementations'
+import { LoginUserResultStatusOptions, LoginUserUseCaseInterface } from '../../../../hipet/usecases/interfaces'
 import { UserRepositoryStub } from '../../../mocks/repositories'
 
 interface SutTypes {
-  sut: CreateUserUseCaseInterface
+  sut: LoginUserUseCaseInterface
   userRepositoryStub: UserRepository
 }
 
 const makeSut = (): SutTypes => {
   const userRepositoryStub = new UserRepositoryStub()
-  const sut = new UserUseCases({ userRepository: userRepositoryStub })
+  const sut = new LoginUserUseCase({ userRepository: userRepositoryStub })
   return {
     sut,
     userRepositoryStub
@@ -18,48 +18,28 @@ const makeSut = (): SutTypes => {
 }
 
 const makeUserRequest = {
-  document: '123.456.789-00',
   email: 'any_email@mail.com',
-  name: 'any_name',
-  nickName: 'any_nickname',
-  password: 'any_password',
-  phoneNumber: '(00) 1234-5678'
+  password: 'any_password'
 }
 
 describe('User - Use Case', () => {
-  describe('Create User', () => {
-    test('Should return REPOSITORY_ERROR status if add method from repository throws', async () => {
+  describe('Login User', () => {
+    test('Should return LOGIN_ERROR if a data is wrong', async () => {
       const { sut, userRepositoryStub } = makeSut()
-      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // email
-      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // document
-      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // nickName
+      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // user doesnt find
 
-      jest.spyOn(userRepositoryStub, 'add').mockImplementationOnce(async () => false) // throw
-
-      const createUserResult = await sut.saveUser(makeUserRequest)
+      const createUserResult = await sut.login(makeUserRequest)
       expect(createUserResult).toEqual({
-        status: CreateUserResultStatusOptions.repository_error
+        status: LoginUserResultStatusOptions.login_error
       })
     })
 
-    test('Should return UNIQUE_KEY_FIELD if any primary key is already used', async () => {
+    test('Should return SUCCESS status if data is correct', async () => {
       const { sut } = makeSut()
-      const createUserResult = await sut.saveUser(makeUserRequest)
+      const loginUserResult = await sut.login(makeUserRequest)
 
-      expect(createUserResult).toEqual({
-        status: CreateUserResultStatusOptions.unique_key_field
-      })
-    })
-
-    test('Should return SUCCESS status and the correct data user', async () => {
-      const { sut, userRepositoryStub } = makeSut()
-      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // email
-      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // document
-      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // nickName
-      const createUserResult = await sut.saveUser(makeUserRequest)
-
-      expect(createUserResult).toEqual({
-        status: CreateUserResultStatusOptions.success
+      expect(loginUserResult).toEqual({
+        status: LoginUserResultStatusOptions.success
       })
     })
   })
