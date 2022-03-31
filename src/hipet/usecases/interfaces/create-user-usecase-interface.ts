@@ -18,6 +18,6 @@ export type CreateUserResult = {
 }
 
 // interfaces
-export interface UserUseCasesInterface {
+export interface CreateUserUseCaseInterface {
   saveUser: (userRequest: UserRequest) => Promise<CreateUserResult>
 }

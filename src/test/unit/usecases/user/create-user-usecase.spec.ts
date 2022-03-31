@@ -1,10 +1,10 @@
 import { UserRepository } from '../../../../hipet/repositories/interfaces'
 import { UserUseCases } from '../../../../hipet/usecases/implementations'
-import { CreateUserResultStatusOptions, UserUseCasesInterface } from '../../../../hipet/usecases/interfaces'
+import { CreateUserResultStatusOptions, CreateUserUseCaseInterface } from '../../../../hipet/usecases/interfaces'
 import { UserRepositoryStub } from '../../../mocks/repositories'
 
 interface SutTypes {
-  sut: UserUseCasesInterface
+  sut: CreateUserUseCaseInterface
   userRepositoryStub: UserRepository
 }
 

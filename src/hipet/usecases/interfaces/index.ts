@@ -1,3 +1,4 @@
 export * from './apresentation-interface'
-export * from './user-usecases-interface'
+// user use cases interfaces
+export * from './create-user-usecase-interface'
 export * from './login-user-interface'

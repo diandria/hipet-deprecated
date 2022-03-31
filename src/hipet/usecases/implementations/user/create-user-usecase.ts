@@ -1,12 +1,12 @@
 import { UserDTO } from '../../../repositories/models'
 import { UserRepository } from '../../../repositories/interfaces'
-import { CreateUserResult, CreateUserResultStatusOptions, UserUseCasesInterface, UserRequest } from '../../interfaces'
+import { CreateUserResult, CreateUserResultStatusOptions, CreateUserUseCaseInterface, UserRequest } from '../../interfaces'
 
 type Dependencies = {
   userRepository: UserRepository
 }
 
-export class UserUseCases implements UserUseCasesInterface {
+export class UserUseCases implements CreateUserUseCaseInterface {
   private readonly userRepository: UserRepository
 
   constructor (dependencies: Dependencies) {
