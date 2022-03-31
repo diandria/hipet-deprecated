@@ -7,7 +7,7 @@ export class UserRepositoryStub implements UserRepository {
     return true
   }
 
-  async findUserByEmail (email: string): Promise<UserDTO> {
+  async findUserBy (field: string, value: any): Promise<UserDTO> {
     return UserDTOmock()
   }
 }

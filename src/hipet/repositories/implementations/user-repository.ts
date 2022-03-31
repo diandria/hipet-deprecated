@@ -7,13 +7,13 @@ export class MongoUserRepository implements UserRepository {
     try {
       return await MongoHelper.addBy(user, 'Users')
     } catch (err) {
-      return null
+      return false
     }
   }
 
-  async findUserByEmail (emailUser: string): Promise<UserDTO> {
+  async findUserBy (field: string, value: any): Promise<UserDTO> {
     try {
-      return await MongoHelper.findBy('email', emailUser, 'Users')
+      return await MongoHelper.findBy(field, value, 'Users')
     } catch (err) {
       return null
     }

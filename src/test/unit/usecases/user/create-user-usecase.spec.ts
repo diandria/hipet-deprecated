@@ -28,9 +28,13 @@ const makeUserRequest = {
 
 describe('User - Use Case', () => {
   describe('Create User', () => {
-    test('Should return REPOSITORY_ERROR status if repository throws', async () => {
+    test('Should return REPOSITORY_ERROR status if add method from repository throws', async () => {
       const { sut, userRepositoryStub } = makeSut()
-      jest.spyOn(userRepositoryStub, 'add').mockImplementationOnce(() => null)
+      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // email
+      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // document
+      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // nickName
+
+      jest.spyOn(userRepositoryStub, 'add').mockImplementationOnce(async () => false) // throw
 
       const createUserResult = await sut.saveUser(makeUserRequest)
       expect(createUserResult).toEqual({
@@ -38,8 +42,20 @@ describe('User - Use Case', () => {
       })
     })
 
-    test('Should return SUCCESS status and the correct data user', async () => {
+    test('Should return UNIQUE_KEY_FIELD if any primary key is already used', async () => {
       const { sut } = makeSut()
+      const createUserResult = await sut.saveUser(makeUserRequest)
+
+      expect(createUserResult).toEqual({
+        status: CreateUserResultStatusOptions.unique_key_field
+      })
+    })
+
+    test('Should return SUCCESS status and the correct data user', async () => {
+      const { sut, userRepositoryStub } = makeSut()
+      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // email
+      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // document
+      jest.spyOn(userRepositoryStub, 'findUserBy').mockImplementationOnce(null) // nickName
       const createUserResult = await sut.saveUser(makeUserRequest)
 
       expect(createUserResult).toEqual({
