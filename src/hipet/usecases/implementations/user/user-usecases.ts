@@ -1,6 +1,6 @@
-import { UserDTO } from '../../repositories/models'
-import { UserRepository } from '../../repositories/interfaces'
-import { CreateUserResult, CreateUserResultStatusOptions, UserUseCasesInterface, UserRequest } from '../interfaces'
+import { UserDTO } from '../../../repositories/models'
+import { UserRepository } from '../../../repositories/interfaces'
+import { CreateUserResult, CreateUserResultStatusOptions, UserUseCasesInterface, UserRequest } from '../../interfaces'
 
 type Dependencies = {
   userRepository: UserRepository

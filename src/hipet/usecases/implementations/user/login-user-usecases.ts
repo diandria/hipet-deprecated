@@ -1,5 +1,5 @@
-import { UserRepository } from '../../repositories/interfaces'
-import { LoginUserResultStatusOptions, LoginRequest, LoginUserResult, LoginUserUseCasesInterface } from '../interfaces'
+import { UserRepository } from '../../../repositories/interfaces'
+import { LoginUserResultStatusOptions, LoginRequest, LoginUserResult, LoginUserUseCasesInterface } from '../../interfaces'
 
 type Dependencies = {
   userRepository: UserRepository
