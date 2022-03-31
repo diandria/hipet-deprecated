@@ -1,6 +1,6 @@
 import { CreateUserController } from '../../hipet/controllers'
 import { LoginUserController } from '../../hipet/controllers/user/login-user-controllers'
-import { MongoUserRepository } from '../../hipet/repositories/implementations/user-repository'
+import { MongoUserRepository } from '../../hipet/repositories/implementations'
 import { UserUseCases } from '../../hipet/usecases/implementations'
 import { LoginUserUseCase } from '../../hipet/usecases/implementations/login-user-usecases'
 
