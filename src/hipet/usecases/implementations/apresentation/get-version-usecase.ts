@@ -1,4 +1,4 @@
-import { ApresentationUseCasesInterface } from '../interfaces'
+import { ApresentationUseCasesInterface } from '../../interfaces'
 
 export class ApresentationUseCases implements ApresentationUseCasesInterface {
   getVersion (): any {
