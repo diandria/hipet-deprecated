@@ -29,16 +29,15 @@ export const MongoHelper = {
     return Object.assign({}, collectionWithoutId, { id: _id })
   },
 
-  async addBy (object: any, collection: string): Promise<any> {
-    const accountCollection = await MongoHelper.getCollection(collection)
+  async addBy (object: any, collectionName: string): Promise<any> {
+    const accountCollection = await MongoHelper.getCollection(collectionName)
     const result = await accountCollection.insertOne(object)
     return MongoHelper.map(result.ops[0])
   },
 
-  async findBy (field: any, value: any, collection: string): Promise<any> {
-    const query = { [field]: value }
-    const accountCollection = await MongoHelper.getCollection(collection)
-    const result = await accountCollection.find(query)
+  async findBy (field: any, value: any, collectionName: string): Promise<any> {
+    const collection = await MongoHelper.getCollection(collectionName)
+    const result = await collection.findOne({ [field]: value })
     return result
   }
 }

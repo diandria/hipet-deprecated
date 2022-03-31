@@ -1,14 +1,11 @@
-import { User } from '../../entities'
-
 export type UserRequest={
   name: string
-  document: string 
+  document: string
   email: string
   phoneNumber: string
   password: string
-  nickName: string  
+  nickName: string
 }
-
 
 // create user helpers
 export enum CreateUserResultStatusOptions {
@@ -18,7 +15,6 @@ export enum CreateUserResultStatusOptions {
 
 export type CreateUserResult = {
   status: CreateUserResultStatusOptions
-  
 }
 
 // interfaces
