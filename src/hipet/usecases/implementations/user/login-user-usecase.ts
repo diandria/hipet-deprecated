@@ -1,11 +1,11 @@
 import { UserRepository } from '../../../repositories/interfaces'
-import { LoginUserResultStatusOptions, LoginRequest, LoginUserResult, LoginUserUseCasesInterface } from '../../interfaces'
+import { LoginUserResultStatusOptions, LoginRequest, LoginUserResult, LoginUserUseCaseInterface } from '../../interfaces'
 
 type Dependencies = {
   userRepository: UserRepository
 }
 
-export class LoginUserUseCase implements LoginUserUseCasesInterface {
+export class LoginUserUseCase implements LoginUserUseCaseInterface {
   private readonly userRepository: UserRepository
 
   constructor (dependencies: Dependencies) {
