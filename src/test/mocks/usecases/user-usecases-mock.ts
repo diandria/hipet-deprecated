@@ -1,12 +1,10 @@
-import { UserUseCasesInterface, CreateUserResult, CreateUserResultStatusOptions } from '../../../hipet/usecases/interfaces'
-import { makeUserMock } from '../entities'
+import { UserUseCasesInterface, CreateUserResult, CreateUserResultStatusOptions, UserRequest } from '../../../hipet/usecases/interfaces'
 
 export const makeUserUseCases = (): UserUseCasesInterface => {
   class UserUseCaseStub implements UserUseCasesInterface {
-    async saveUser (name: string, email: string, password: string, phoneNumber: string): Promise<CreateUserResult> {
+    async saveUser (userRequest: UserRequest): Promise<CreateUserResult> {
       return {
-        status: CreateUserResultStatusOptions.success,
-        user: makeUserMock()
+        status: CreateUserResultStatusOptions.success
       }
     }
   }
