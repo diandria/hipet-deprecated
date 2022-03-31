@@ -10,6 +10,7 @@ export type UserRequest={
 // create user helpers
 export enum CreateUserResultStatusOptions {
   success = 'SUCCESS',
+  unique_key_field = 'UNIQUE_KEY_FIELD',
   repository_error = 'REPOSITORY_ERROR'
 }
 
@@ -18,6 +19,6 @@ export type CreateUserResult = {
 }
 
 // interfaces
-export interface UserUseCasesInterface {
+export interface CreateUserUseCaseInterface {
   saveUser: (userRequest: UserRequest) => Promise<CreateUserResult>
 }

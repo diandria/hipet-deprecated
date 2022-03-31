@@ -3,17 +3,17 @@ import { MongoHelper } from '../../../../config/repository/helpers/mongodb/mongo
 import { UserDTO } from '../models'
 
 export class MongoUserRepository implements UserRepository {
-  async add (user: UserDTO): Promise<UserDTO> {
+  async add (user: UserDTO): Promise<boolean> {
     try {
       return await MongoHelper.addBy(user, 'Users')
     } catch (err) {
-      return null
+      return false
     }
   }
 
-  async findUser (emailUser: string): Promise<UserDTO> {
+  async findUserBy (field: string, value: any): Promise<UserDTO> {
     try {
-      return await MongoHelper.findBy('email', emailUser, 'Users')
+      return await MongoHelper.findBy(field, value, 'Users')
     } catch (err) {
       return null
     }
