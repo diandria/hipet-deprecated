@@ -3,7 +3,7 @@ import { MongoHelper } from '../../../../config/repository/helpers/mongodb/mongo
 import { UserDTO } from '../models'
 
 export class MongoUserRepository implements UserRepository {
-  async add (user: UserDTO): Promise<UserDTO> {
+  async add (user: UserDTO): Promise<boolean> {
     try {
       return await MongoHelper.addBy(user, 'Users')
     } catch (err) {

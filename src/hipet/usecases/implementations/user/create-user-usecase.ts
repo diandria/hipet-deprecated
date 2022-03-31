@@ -23,9 +23,9 @@ export class UserUseCases implements CreateUserUseCaseInterface {
     userDTO.document = userRequest.document
     userDTO.nickName = userRequest.nickName
 
-    const createdUser = await this.userRepository.add(userDTO)
+    const isUserCreated = await this.userRepository.add(userDTO)
 
-    if (!createdUser) {
+    if (!isUserCreated) {
       return {
         status: CreateUserResultStatusOptions.repository_error
       }
