@@ -1,7 +1,7 @@
 import { HttpController, HttpRequest, HttpResponse } from '../../../../config/controllers/contracts'
-import { MissingParamError } from '../../../../config/controllers/errors'
+import { MissingParamError, WrongParamError } from '../../../../config/controllers/errors'
 import { badRequest, serverError, success } from '../../../../config/controllers/helpers/http-helpers'
-import { CreateUserUseCaseInterface } from '../../usecases/interfaces'
+import { CreateUserUseCaseInterface, CreateUserResultStatusOptions } from '../../usecases/interfaces'
 
 export class CreateUserController implements HttpController {
   constructor (
@@ -20,6 +20,10 @@ export class CreateUserController implements HttpController {
       }
 
       const result = await this.userUseCases.saveUser(requestData)
+
+      if (result.status === CreateUserResultStatusOptions.unique_key_field) {
+        return badRequest(new WrongParamError(result.status))
+      }
       return success(result)
     } catch (error) {
       console.error(error)

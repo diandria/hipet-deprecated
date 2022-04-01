@@ -19,3 +19,10 @@ export class MissingParamError extends Error {
     this.name = 'MissingParamError'
   }
 }
+
+export class WrongParamError extends Error {
+  constructor (error: string) {
+    super(`Error message: ${error}`)
+    this.name = 'WrongParamError'
+  }
+}
