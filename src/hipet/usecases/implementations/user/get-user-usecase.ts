@@ -1,46 +1,43 @@
 import { UserDTO } from '../../../repositories/models'
 import { UserRepository } from '../../../repositories/interfaces'
-import { CreateUserResult, CreateUserResultStatusOptions, CreateUserUseCaseInterface, UserRequest } from '../../interfaces'
+import { GetUserResult, GetUserResultStatusOptions, GetUserUseCaseInterface, UserRequest } from '../../interfaces'
+import { User } from '../../../entities'
 
 type Dependencies = {
   userRepository: UserRepository
 }
 
-export class CreateUserUseCase implements CreateUserUseCaseInterface {
+export class GetUserUseCase implements GetUserUseCaseInterface {
   private readonly userRepository: UserRepository
 
   constructor (dependencies: Dependencies) {
     this.userRepository = dependencies.userRepository
   }
 
-  async saveUser (userRequest: UserRequest): Promise<CreateUserResult> {
-    const userDTO = new UserDTO()
+  private toUser (dto: UserDTO): User {
+    const user = new User()
+    user.email = dto.email
+    user.name = dto.name
+    user.password = dto.password
+    user.phoneNumber = dto.phoneNumber
+    user.nickName = dto.nickName
+    user.document = dto.document
+    return user
+  }
 
-    userDTO.name = userRequest.name
-    userDTO.email = userRequest.email
-    userDTO.password = userRequest.password
-    userDTO.phoneNumber = userRequest.phoneNumber
-    userDTO.document = userRequest.document
-    userDTO.nickName = userRequest.nickName
+  async get (userRequest: UserRequest): Promise<GetUserResult> {
+    const userDTO = await this.userRepository.findUserBy('email', userRequest.email)
 
-    const isEmailUsed = await this.userRepository.findUserBy('email', userDTO.email)
-    const isDocumentUsed = await this.userRepository.findUserBy('document', userDTO.document)
-    const isNickNameUsed = await this.userRepository.findUserBy('nickName', userDTO.nickName)
-    if (isEmailUsed || isDocumentUsed || isNickNameUsed) {
+    if (!userDTO) {
       return {
-        status: CreateUserResultStatusOptions.unique_key_field
-      }
-    }
-
-    const createdUser = await this.userRepository.add(userDTO)
-    if (!createdUser) {
-      return {
-        status: CreateUserResultStatusOptions.repository_error
+        status: GetUserResultStatusOptions.user_not_exists,
+        user: null
       }
     }
 
     return {
-      status: CreateUserResultStatusOptions.success
+      status: GetUserResultStatusOptions.success,
+      user: this.toUser(userDTO)
     }
   }
 }
