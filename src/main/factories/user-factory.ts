@@ -1,7 +1,6 @@
-import { CreateUserController } from '../../hipet/controllers'
-import { LoginUserController } from '../../hipet/controllers/user/login-user-controllers'
+import { CreateUserController, GetUserController, LoginUserController } from '../../hipet/controllers'
 import { MongoUserRepository } from '../../hipet/repositories/implementations'
-import { CreateUserUseCase, LoginUserUseCase } from '../../hipet/usecases/implementations'
+import { CreateUserUseCase, GetUserUseCase, LoginUserUseCase } from '../../hipet/usecases/implementations'
 
 export const makeCreateUserController = (): CreateUserController => {
   const userRepository = new MongoUserRepository()
@@ -15,4 +14,11 @@ export const makeLoginUserController = (): LoginUserController => {
   const loginUseCases = new LoginUserUseCase({ userRepository })
 
   return new LoginUserController(loginUseCases)
+}
+
+export const makeGetUserController = (): GetUserController => {
+  const userRepository = new MongoUserRepository()
+  const userUseCases = new GetUserUseCase({ userRepository })
+
+  return new GetUserController(userUseCases)
 }
