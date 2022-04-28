@@ -1,6 +1,6 @@
 import { PostRepository } from '../../../hipet/repositories/interfaces'
 import { PostDTO } from '../../../hipet/repositories/models'
-import { PostDTOmock } from './models'
+import { mockPostDTO } from './models'
 
 export class PostRepositoryStub implements PostRepository {
   async add (post: PostDTO): Promise<boolean> {
@@ -8,6 +8,6 @@ export class PostRepositoryStub implements PostRepository {
   }
 
   async findPostBy (field: string, value: any): Promise<PostDTO> {
-    return PostDTOmock()
+    return mockPostDTO()
   }
 }
