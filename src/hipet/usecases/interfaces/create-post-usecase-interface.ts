@@ -1,13 +1,17 @@
+import { Animal } from '../../entities'
+
 export type CreatePostRequest={
-  title: string
-  text: string
-  userNickname: string
+  userEmail: string
+  picture: string
+  description: string
+  animal: Animal
 }
 
 // create post helpers
 export enum CreatePostResultStatusOptions {
   success = 'SUCCESS',
-  repository_error = 'REPOSITORY_ERROR'
+  repository_error = 'REPOSITORY_ERROR',
+  user_not_found = 'USER_NOT_FOUND'
 }
 
 export type CreatePostResult = {
