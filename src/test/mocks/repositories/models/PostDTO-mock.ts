@@ -1,10 +1,14 @@
 import { PostDTO } from '../../../../hipet/repositories/models'
+import { mockAnimal, mockUser } from '../../entity'
 
-export const PostDTOmock = (): PostDTO => {
+export const mockPost = (): PostDTO => {
   const postDTO = new PostDTO()
   postDTO._id = 'any_id'
-  postDTO.text = 'any_post_text'
-  postDTO.title = 'any_title'
-  postDTO.userNickname = 'any_user_nickname'
+  postDTO.user = mockUser
+  postDTO.picture = 'any_url.com.br'
+  postDTO.description = 'any_description'
+  postDTO.animal = mockAnimal()
+  postDTO.reports = []
+  postDTO.createdAt = new Date()
   return postDTO
 }

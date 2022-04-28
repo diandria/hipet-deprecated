@@ -1,6 +1,11 @@
+import { Animal, Report, User } from '../../entities'
+
 export class PostDTO {
   _id: string
-  title: string
-  text: string
-  userNickname: string // chave unica
+  createdAt: Date
+  user: User
+  picture: string
+  description: string
+  animal: Animal
+  reports: Report[]
 }
