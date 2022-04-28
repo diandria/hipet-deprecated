@@ -1,7 +1,8 @@
 import { MongoHelper } from '../../../../config/repository/helpers/mongodb/mongo-helper'
 import { MongoPostRepository } from '../../../hipet/repositories/implementations'
 import { PostRepository } from '../../../hipet/repositories/interfaces'
-import { PostDTOmock } from '../../mocks/repositories/models'
+import { mockAnimal, mockUser } from '../../mocks/entity'
+import { mockPostDTO } from '../../mocks/repositories/models'
 
 describe('Account Mongo Repository', () => {
   beforeAll(async () => {
@@ -26,7 +27,7 @@ describe('Account Mongo Repository', () => {
       test('Shoult return an post data on success', async () => {
         const sut = makeSut()
 
-        const isPostCreated = await sut.add(PostDTOmock())
+        const isPostCreated = await sut.add(mockPostDTO())
         expect(isPostCreated).toBeTruthy()
       })
     })
@@ -41,14 +42,17 @@ describe('Account Mongo Repository', () => {
 
       test('Shoult return an post data on success', async () => {
         const sut = makeSut()
-        await sut.add(PostDTOmock())
+        await sut.add(mockPostDTO())
 
         const post = await sut.findPostBy('_id', 'any_id')
         expect(post).toBeTruthy()
         expect(post._id).toBeTruthy()
-        expect(post.title).toBe('any_title')
-        expect(post.text).toBe('any_post_text')
-        expect(post.userNickname).toBe('any_user_nickname')
+        expect(post.user).toEqual(mockUser)
+        expect(post.picture).toBe('any_url.com.br')
+        expect(post.description).toBe('any_description')
+        expect(post.animal).toEqual(mockAnimal())
+        expect(post.reports).toEqual([])
+        expect(post.createdAt).toEqual(new Date('2022'))
       })
     })
   })
