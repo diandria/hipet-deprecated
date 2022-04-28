@@ -12,7 +12,7 @@ export class CreatePostController implements HttpController {
     try {
       const requestData = httpRequest.body
 
-      const requiredFields = ['title', 'text', 'userNickname']
+      const requiredFields = ['userEmail', 'picture', 'description', 'animal']
       for (const field of requiredFields) {
         if (!requestData[field]) {
           return badRequest(new MissingParamError(field))
