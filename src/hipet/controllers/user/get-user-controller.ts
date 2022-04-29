@@ -1,7 +1,7 @@
 import { HttpController, HttpRequest, HttpResponse } from '../../../../config/controllers/contracts'
-import { MissingParamError } from '../../../../config/controllers/errors'
+import { MissingParamError, WrongParamError } from '../../../../config/controllers/errors'
 import { badRequest, serverError, success } from '../../../../config/controllers/helpers/http-helpers'
-import { GetUserUseCaseInterface } from '../../usecases/interfaces'
+import { GetUserResultStatusOptions, GetUserUseCaseInterface } from '../../usecases/interfaces'
 
 export class GetUserController implements HttpController {
   constructor (
@@ -20,6 +20,11 @@ export class GetUserController implements HttpController {
       }
 
       const result = await this.userUseCases.get(requestData)
+
+      if (result.status === GetUserResultStatusOptions.user_not_exists) {
+        return badRequest(new WrongParamError(result.status))
+      }
+
       return success(result)
     } catch (error) {
       console.error(error)
