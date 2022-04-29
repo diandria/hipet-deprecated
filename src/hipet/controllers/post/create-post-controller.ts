@@ -1,7 +1,7 @@
 import { HttpController, HttpRequest, HttpResponse } from '../../../../config/controllers/contracts'
-import { MissingParamError } from '../../../../config/controllers/errors'
+import { MissingParamError, WrongParamError } from '../../../../config/controllers/errors'
 import { badRequest, serverError, success } from '../../../../config/controllers/helpers/http-helpers'
-import { CreatePostUseCaseInterface } from '../../usecases/interfaces'
+import { CreatePostResultStatusOptions, CreatePostUseCaseInterface } from '../../usecases/interfaces'
 
 export class CreatePostController implements HttpController {
   constructor (
@@ -20,6 +20,11 @@ export class CreatePostController implements HttpController {
       }
 
       const result = await this.postUseCases.create(requestData)
+
+      if (result.status === CreatePostResultStatusOptions.user_not_found) {
+        return badRequest(new WrongParamError(result.status))
+      }
+
       return success(result)
     } catch (error) {
       console.error(error)
