@@ -18,4 +18,12 @@ export class MongoPostRepository implements PostRepository {
       return null
     }
   }
+
+  async list (): Promise<PostDTO[]> {
+    try {
+      return await MongoHelper.list('Posts')
+    } catch (err) {
+      return null
+    }
+  }
 }
