@@ -6,3 +6,4 @@ export * from './user/login-user-usecase'
 export * from './user/get-user-usecase'
 // post use cases
 export * from './post/create-post-usecase'
+export * from './post/list-post-usecase'
