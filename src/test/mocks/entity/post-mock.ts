@@ -9,6 +9,6 @@ export const mockPost = (): Post => {
   post.description = 'any_description'
   post.animal = mockAnimal()
   post.reports = []
-  post.createdAt = new Date()
+  post.createdAt = new Date('2022')
   return post
 }

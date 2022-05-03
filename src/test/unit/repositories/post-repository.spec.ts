@@ -55,5 +55,23 @@ describe('Account Mongo Repository', () => {
         expect(post.createdAt).toEqual(new Date('2022'))
       })
     })
+
+    describe('List All Posts', () => {
+      test('Shoult return an empty array if no one post exists', async () => {
+        const sut = makeSut()
+
+        const postList = await sut.list()
+        expect(postList).toEqual([])
+      })
+
+      test('Shoult return a list posts on success', async () => {
+        const sut = makeSut()
+        const mockPost = mockPostDTO()
+        await sut.add(mockPost)
+
+        const postList = await sut.list()
+        expect(postList).toEqual([mockPost])
+      })
+    })
   })
 })

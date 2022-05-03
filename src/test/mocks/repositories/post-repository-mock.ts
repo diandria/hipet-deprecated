@@ -10,4 +10,8 @@ export class PostRepositoryStub implements PostRepository {
   async findPostBy (field: string, value: any): Promise<PostDTO> {
     return mockPostDTO()
   }
+
+  async list (): Promise<any> {
+    return [mockPostDTO()]
+  }
 }

@@ -39,5 +39,11 @@ export const MongoHelper = {
     const collection = await MongoHelper.getCollection(collectionName)
     const result = await collection.findOne({ [field]: value })
     return result
+  },
+
+  async list (collectionName: string, limitNumber: number = 0): Promise<any> {
+    const collection = await MongoHelper.getCollection(collectionName)
+    const result = await collection.find({}).limit(limitNumber).toArray()
+    return result
   }
 }
