@@ -1,6 +1,8 @@
 import {
-  CreatePostUseCaseInterface, CreatePostResult, CreatePostResultStatusOptions, CreatePostRequest
+  CreatePostUseCaseInterface, CreatePostResult, CreatePostResultStatusOptions, CreatePostRequest,
+  ListPostUseCaseInterface, ListPostResult, ListPostResultStatusOptions
 } from '../../../hipet/usecases/interfaces'
+import { mockPost } from '../entity'
 
 export const makeCreatePostUseCase = (): CreatePostUseCaseInterface => {
   class PostUseCaseStub implements CreatePostUseCaseInterface {
@@ -11,4 +13,16 @@ export const makeCreatePostUseCase = (): CreatePostUseCaseInterface => {
     }
   }
   return new PostUseCaseStub()
+}
+
+export const makeListPostUseCase = (): ListPostUseCaseInterface => {
+  class ListPostUseCaseStub implements ListPostUseCaseInterface {
+    async list (): Promise<ListPostResult> {
+      return {
+        status: ListPostResultStatusOptions.success,
+        posts: [mockPost()]
+      }
+    }
+  }
+  return new ListPostUseCaseStub()
 }
