@@ -50,9 +50,18 @@ describe('Post - Use Case', () => {
       })
     })
 
-    test('Should return SUCCESS status and the correct data post', async () => {
+    test('Should return SUCCESS status without address field', async () => {
       const { sut } = makeSut()
       const createPostResult = await sut.create(makePostRequest)
+
+      expect(createPostResult).toEqual({
+        status: CreatePostResultStatusOptions.success
+      })
+    })
+
+    test('Should return SUCCESS status with address field', async () => {
+      const { sut } = makeSut()
+      const createPostResult = await sut.create({ ...makePostRequest, address: 'any_address' })
 
       expect(createPostResult).toEqual({
         status: CreatePostResultStatusOptions.success
