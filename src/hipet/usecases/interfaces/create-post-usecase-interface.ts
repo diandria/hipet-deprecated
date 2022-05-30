@@ -5,6 +5,7 @@ export type CreatePostRequest={
   picture: string
   description: string
   animal: Animal
+  address?: string
 }
 
 // create post helpers

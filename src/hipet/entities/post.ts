@@ -4,7 +4,7 @@ import { User } from './user'
 
 export class Post {
   user: User
-  address: string
+  address?: string
   picture: string
   description: string
   animal: Animal

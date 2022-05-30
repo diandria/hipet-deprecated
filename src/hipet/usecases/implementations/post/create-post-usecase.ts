@@ -44,7 +44,8 @@ export class CreatePostUseCase implements CreatePostUseCaseInterface {
     postDTO.picture = postRequest.picture
     postDTO.description = postRequest.description
     postDTO.animal = postRequest.animal
-    // todo: adicionar o reports
+    postDTO.reports = []
+    if (postRequest.address) postDTO.address = postRequest.address
 
     const createdPost = await this.postRepository.add(postDTO)
     if (!createdPost) {
