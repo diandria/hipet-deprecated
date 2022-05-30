@@ -1,20 +1,26 @@
 import { UserRepository } from '../../../../hipet/repositories/interfaces'
+import { CryptographService } from '../../../../hipet/services/interfaces'
 import { GetUserUseCase } from '../../../../hipet/usecases/implementations'
 import { GetUserResultStatusOptions, GetUserUseCaseInterface } from '../../../../hipet/usecases/interfaces'
 import { mockUser } from '../../../mocks/entity/user-mock'
 import { UserRepositoryStub } from '../../../mocks/repositories'
+import { CryptographServiceStub } from '../../../mocks/services'
 
 interface SutTypes {
   sut: GetUserUseCaseInterface
   userRepositoryStub: UserRepository
+  cryptographServiceStub: CryptographService
+
 }
 
 const makeSut = (): SutTypes => {
   const userRepositoryStub = new UserRepositoryStub()
-  const sut = new GetUserUseCase({ userRepository: userRepositoryStub })
+  const cryptographServiceStub = new CryptographServiceStub()
+  const sut = new GetUserUseCase({ userRepository: userRepositoryStub, crytographService: cryptographServiceStub })
   return {
     sut,
-    userRepositoryStub
+    userRepositoryStub,
+    cryptographServiceStub
   }
 }
 
@@ -41,7 +47,7 @@ describe('User - Use Case', () => {
 
       expect(getUserResult).toEqual({
         status: GetUserResultStatusOptions.success,
-        user: mockUser
+        user: { ...mockUser, password: 'any_encoded_password', document: 'any_decoded_value' }
       })
     })
   })

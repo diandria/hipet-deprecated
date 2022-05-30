@@ -24,7 +24,7 @@ const makeSut = (): SutTypes => {
 
 const makeUserRequest = {
   email: 'any_email@mail.com',
-  password: 'any_password'
+  password: 'any_decoded_value'
 }
 
 describe('User - Use Case', () => {

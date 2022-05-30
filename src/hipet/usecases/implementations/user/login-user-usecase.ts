@@ -18,9 +18,8 @@ export class LoginUserUseCase implements LoginUserUseCaseInterface {
 
   async login (loginRequest: LoginRequest): Promise<LoginUserResult> {
     const user = await this.userRepository.findUserBy('email', loginRequest.email)
-    const password = this.crytographService.decrypt(user.password)
 
-    if (!user || password !== loginRequest.password) {
+    if (!user || this.crytographService.decrypt(user.password) !== loginRequest.password) {
       return {
         status: LoginUserResultStatusOptions.login_error
       }
