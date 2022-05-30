@@ -10,5 +10,6 @@ export const mockPostDTO = (): PostDTO => {
   postDTO.animal = mockAnimal()
   postDTO.reports = []
   postDTO.createdAt = new Date('2022')
+  postDTO.address = 'any_address'
   return postDTO
 }

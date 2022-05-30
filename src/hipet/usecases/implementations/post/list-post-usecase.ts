@@ -22,6 +22,7 @@ export class ListPostUseCase implements ListPostUseCaseInterface {
     post.picture = postDto.picture
     post.reports = postDto.reports
     post.user = postDto.user
+    if (postDto.address) post.address = postDto.address
     return post
   }
 
