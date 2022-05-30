@@ -1,16 +1,20 @@
 import { UserDTO } from '../../../repositories/models'
 import { UserRepository } from '../../../repositories/interfaces'
 import { CreateUserResult, CreateUserResultStatusOptions, CreateUserUseCaseInterface, UserRequest } from '../../interfaces'
+import { CryptographService } from '../../../services/interfaces'
 
 type Dependencies = {
   userRepository: UserRepository
+  crytographService: CryptographService
 }
 
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
   private readonly userRepository: UserRepository
+  private readonly crytographService: CryptographService
 
   constructor (dependencies: Dependencies) {
     this.userRepository = dependencies.userRepository
+    this.crytographService = dependencies.crytographService
   }
 
   async saveUser (userRequest: UserRequest): Promise<CreateUserResult> {
@@ -18,9 +22,9 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
 
     userDTO.name = userRequest.name
     userDTO.email = userRequest.email
-    userDTO.password = userRequest.password
+    userDTO.password = this.crytographService.encrypt(userRequest.password)
     userDTO.phoneNumber = userRequest.phoneNumber
-    userDTO.document = userRequest.document
+    userDTO.document = this.crytographService.encrypt(userRequest.document)
     userDTO.nickName = userRequest.nickName
 
     const isEmailUsed = await this.userRepository.findUserBy('email', userDTO.email)
