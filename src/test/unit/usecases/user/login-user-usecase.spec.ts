@@ -1,19 +1,24 @@
 import { UserRepository } from '../../../../hipet/repositories/interfaces'
+import { CryptographService } from '../../../../hipet/services/interfaces'
 import { LoginUserUseCase } from '../../../../hipet/usecases/implementations'
 import { LoginUserResultStatusOptions, LoginUserUseCaseInterface } from '../../../../hipet/usecases/interfaces'
 import { UserRepositoryStub } from '../../../mocks/repositories'
+import { CryptographServiceStub } from '../../../mocks/services'
 
 interface SutTypes {
   sut: LoginUserUseCaseInterface
   userRepositoryStub: UserRepository
+  cryptographServiceStub: CryptographService
 }
 
 const makeSut = (): SutTypes => {
   const userRepositoryStub = new UserRepositoryStub()
-  const sut = new LoginUserUseCase({ userRepository: userRepositoryStub })
+  const cryptographServiceStub = new CryptographServiceStub()
+  const sut = new LoginUserUseCase({ userRepository: userRepositoryStub, crytographService: cryptographServiceStub })
   return {
     sut,
-    userRepositoryStub
+    userRepositoryStub,
+    cryptographServiceStub
   }
 }
 
