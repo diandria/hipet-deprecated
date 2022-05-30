@@ -1,6 +1,6 @@
-import { CriptographService } from '../interfaces'
+import { CryptographService } from '../interfaces'
 
-export class NodeCriptographService implements CriptographService {
+export class NodeCryptographService implements CryptographService {
   encrypt (decodedValue: string): string {
     return Buffer.from(decodedValue, 'binary').toString('base64')
   }

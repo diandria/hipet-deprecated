@@ -1,9 +1,9 @@
-import { NodeCriptographService } from '../../../hipet/services/implementations'
-import { CriptographService } from '../../../hipet/services/interfaces'
+import { NodeCryptographService } from '../../../hipet/services/implementations'
+import { CryptographService } from '../../../hipet/services/interfaces'
 
 describe('Criptograph Service', () => {
-  const makeSut = (): CriptographService => {
-    return new NodeCriptographService()
+  const makeSut = (): CryptographService => {
+    return new NodeCryptographService()
   }
 
   const decodedValueMock = 'any_decoded_value'
