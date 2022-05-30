@@ -10,5 +10,6 @@ export const mockPost = (): Post => {
   post.animal = mockAnimal()
   post.reports = []
   post.createdAt = new Date('2022')
+  post.address = 'any_address'
   return post
 }
