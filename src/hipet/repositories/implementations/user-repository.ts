@@ -5,9 +5,9 @@ import { UserDTO } from '../models'
 const collectionName = 'User'
 
 export class MongoUserRepository implements UserRepository {
-  async add (user: UserDTO): Promise<UserDTO> {
+  async add (user: UserDTO): Promise<boolean> {
     try {
-      return await MongoHelper.add(user, collectionName)
+      return await MongoHelper.addBy(user, collectionName)
     } catch (err) {
       return null
     }

@@ -1,4 +1,4 @@
-import { User, UserTypeOptions } from '../../../schemata/entities'
+import { UserTypeOptions } from '../../../schemata/entities'
 
 export type UserRequest = {
   type: UserTypeOptions
@@ -19,7 +19,6 @@ export enum CreateUserResultStatusOptions {
 
 export type CreateUserResult = {
   status: CreateUserResultStatusOptions
-  user?: User
 }
 
 export interface CreateUserUseCaseInterface {
