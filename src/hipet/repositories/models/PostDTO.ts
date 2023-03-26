@@ -1,12 +1,15 @@
-import { Animal, Report, User } from '../../entities'
+import { Uuid } from '../../schemata/types'
+import { Animal, StateOptions } from '../../schemata/entities'
 
 export class PostDTO {
-  _id: string
-  address?: string
-  createdAt: Date
-  user: User
-  picture: string
-  description: string
+  _id: Uuid // chave unica
+  user_id: Uuid
   animal: Animal
-  reports: Report[]
+  state: StateOptions
+  picture?: string
+  description: string
+  created_at: Date
+  reports: Uuid[]
+  share_url: string
+  deleted_at?: Date
 }
