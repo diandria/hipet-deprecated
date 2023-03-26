@@ -1,7 +1,7 @@
-export type UserTypeOptions = 'PERSON' | 'ONG'
+import { UserTypeOptions } from '../../schemata/entities'
 
-export class User {
-  id: string
+export class UserDTO {
+  _id: string
   type: UserTypeOptions
   name: string
   email: string
