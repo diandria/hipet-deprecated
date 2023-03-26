@@ -12,9 +12,8 @@ export class CreateUserController implements HttpController {
     try {
       const requestData = httpRequest.body
 
-      const requiredFields = ['type', 'name', 'email', 'nickname', 'phone_number', 'password']
-      for (const field of requiredFields) {
-        console.log('AAAAAAAAAAAAH', field)
+      const requiredCommonFields = ['type', 'name', 'email', 'nickname', 'phone_number', 'password']
+      for (const field of requiredCommonFields) {
         if (!requestData[field]) return badRequest(new MissingParamError(field))
       }
 
@@ -23,9 +22,17 @@ export class CreateUserController implements HttpController {
         for (const field of requiredPersonFields) {
           if (!requestData[field]) return badRequest(new MissingParamError(field))
         }
-        if (requestData.donation_link) return badRequest(new WrongParamError('donation_link'))
+        const notAcceptedPersonFields = ['donation_link']
+        for (const field of notAcceptedPersonFields) {
+          if (requestData[field]) return badRequest(new WrongParamError(field))
+        }
+      } else if (requestData.type === 'ONG') {
+        const notAcceptedOngFields = ['document']
+        for (const field of notAcceptedOngFields) {
+          if (requestData[field]) return badRequest(new WrongParamError(field))
+        }
       } else {
-        if (requestData.document) return badRequest(new WrongParamError('document'))
+        return badRequest(new WrongParamError(requestData.type))
       }
 
       const result = await this.userUseCases.create(requestData)
