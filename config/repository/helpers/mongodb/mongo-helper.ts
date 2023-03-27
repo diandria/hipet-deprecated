@@ -36,8 +36,9 @@ export const MongoHelper = {
   },
 
   async add (object: any, collectionName: string): Promise<any> {
-    const accountCollection = await MongoHelper.getCollection(collectionName)
-    const result = await accountCollection.insertOne(object)
+    const collection = await MongoHelper.getCollection(collectionName)
+    await collection.insertOne(object)
+    const result = await collection.findOne({ _id: object._id })
     return result
   },
 
