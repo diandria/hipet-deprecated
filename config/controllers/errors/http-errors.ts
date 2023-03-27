@@ -26,3 +26,10 @@ export class WrongParamError extends Error {
     this.name = 'WrongParamError'
   }
 }
+
+export class ContentNotFoundError extends Error {
+  constructor (content: string, id: string) {
+    super(`${content} not Found for: ${id}`)
+    this.name = 'ContentNotFoundError'
+  }
+}

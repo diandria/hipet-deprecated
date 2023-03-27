@@ -6,6 +6,11 @@ export const unprocessableEntity = (error: Error): HttpResponse => ({
   body: error
 })
 
+export const notFound = (error: Error): HttpResponse => ({
+  status: 404,
+  body: error
+})
+
 export const unauthorized = (error: Error): HttpResponse => ({
   status: 401,
   body: error
