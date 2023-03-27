@@ -1,2 +1,2 @@
-export * from './apresentation-interface'
+export * from './apresentation'
 export * from './user'

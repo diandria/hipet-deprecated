@@ -52,5 +52,12 @@ export const MongoHelper = {
     const collection = await MongoHelper.getCollection(collectionName)
     const result = await collection.find({}).limit(limitNumber).toArray()
     return result
+  },
+
+  async updateBy (filter: any, object: any, collectionName: string): Promise<any> {
+    const collection = await MongoHelper.getCollection(collectionName)
+    await collection.updateOne(filter, { $set: object })
+    const result = await collection.findOne(filter)
+    return result
   }
 }

@@ -1,8 +1,8 @@
-import { CreateUserController, FindUserByIdController, FindUserByNicknameController } from '../../hipet/controllers'
+import { CreateUserController, FindUserByIdController, FindUserByNicknameController, UpdateUserController } from '../../hipet/controllers'
 import { MongoUserRepository } from '../../hipet/repositories/implementations'
 import { NodeCryptographService } from '../../hipet/services/implementations'
 import { NodeUuidService } from '../../hipet/services/implementations/node-uuid-service'
-import { CreateUserUseCase, FindUserByIdUseCase, FindUserByNicknameUseCase } from '../../hipet/usecases/implementations'
+import { CreateUserUseCase, FindUserByIdUseCase, FindUserByNicknameUseCase, UpdateUserUseCase } from '../../hipet/usecases/implementations'
 
 export const makeCreateUserController = (): CreateUserController => {
   const uuidService = new NodeUuidService()
@@ -29,4 +29,13 @@ export const makeFindUserByNicknameController = (): FindUserByNicknameController
   const userUseCases = new FindUserByNicknameUseCase({ userRepository, crytographService })
 
   return new FindUserByNicknameController(userUseCases)
+}
+
+export const makeUpdateUserController = (): UpdateUserController => {
+  const uuidService = new NodeUuidService()
+  const userRepository = new MongoUserRepository({ uuidService })
+  const crytographService = new NodeCryptographService()
+  const userUseCases = new UpdateUserUseCase({ userRepository, crytographService })
+
+  return new UpdateUserController(userUseCases)
 }

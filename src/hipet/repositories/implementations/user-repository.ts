@@ -32,4 +32,14 @@ export class MongoUserRepository implements UserRepository {
       return null
     }
   }
+
+  async updateBy (field: string, value: any, user: UserDTO): Promise<UserDTO> {
+    try {
+      const filter = { [field]: value }
+      return await MongoHelper.updateBy(filter, user, collectionName)
+    } catch (err) {
+      console.log('CAIU NO CATCH: ', err)
+      return null
+    }
+  }
 }
