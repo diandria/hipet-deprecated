@@ -27,6 +27,13 @@ export class WrongParamError extends Error {
   }
 }
 
+export class NotAcceptParamError extends Error {
+  constructor (field: string) {
+    super(`This field is not accepted: ${field}`)
+    this.name = 'NotAcceptParamError'
+  }
+}
+
 export class ContentNotFoundError extends Error {
   constructor (content: string, id: string) {
     super(`${content} not Found for: ${id}`)
