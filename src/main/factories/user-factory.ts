@@ -1,8 +1,8 @@
-import { CreateUserController, FindUserByIdController, FindUserByNicknameController, UpdateUserController } from '../../hipet/controllers'
+import { CreateUserController, FindUserByIdController, FindUserByNicknameController, UpdateUserController, DisableUserController } from '../../hipet/controllers'
 import { MongoUserRepository } from '../../hipet/repositories/implementations'
 import { NodeCryptographService } from '../../hipet/services/implementations'
 import { NodeUuidService } from '../../hipet/services/implementations/node-uuid-service'
-import { CreateUserUseCase, FindUserByIdUseCase, FindUserByNicknameUseCase, UpdateUserUseCase } from '../../hipet/usecases/implementations'
+import { CreateUserUseCase, FindUserByIdUseCase, FindUserByNicknameUseCase, UpdateUserUseCase, DisableUserUseCase } from '../../hipet/usecases/implementations'
 
 export const makeCreateUserController = (): CreateUserController => {
   const uuidService = new NodeUuidService()
@@ -38,4 +38,12 @@ export const makeUpdateUserController = (): UpdateUserController => {
   const userUseCases = new UpdateUserUseCase({ userRepository, crytographService })
 
   return new UpdateUserController(userUseCases)
+}
+
+export const makeDisableUserController = (): DisableUserController => {
+  const uuidService = new NodeUuidService()
+  const userRepository = new MongoUserRepository({ uuidService })
+  const userUseCases = new DisableUserUseCase({ userRepository })
+
+  return new DisableUserController(userUseCases)
 }
