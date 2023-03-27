@@ -1,5 +1,5 @@
 import { HttpController, HttpRequest, HttpResponse } from '../../../../config/controllers/contracts'
-import { MissingParamError, WrongParamError } from '../../../../config/controllers/errors'
+import { MissingParamError, NotAcceptParamError, WrongParamError } from '../../../../config/controllers/errors'
 import { badRequest, serverError, success } from '../../../../config/controllers/helpers/http-helpers'
 import { CreateUserUseCaseInterface, CreateUserResultStatusOptions } from '../../usecases/interfaces'
 
@@ -24,12 +24,12 @@ export class CreateUserController implements HttpController {
         }
         const notAcceptedPersonFields = ['donation_link']
         for (const field of notAcceptedPersonFields) {
-          if (requestData[field]) return badRequest(new WrongParamError(field))
+          if (requestData[field]) return badRequest(new NotAcceptParamError(field))
         }
       } else if (requestData.type === 'ONG') {
         const notAcceptedOngFields = ['document']
         for (const field of notAcceptedOngFields) {
-          if (requestData[field]) return badRequest(new WrongParamError(field))
+          if (requestData[field]) return badRequest(new NotAcceptParamError(field))
         }
       } else {
         return badRequest(new WrongParamError(requestData.type))
