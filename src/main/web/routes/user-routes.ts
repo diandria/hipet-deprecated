@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { makeCreateUserController, makeFindUserByIdController, makeFindUserByNicknameController, makeUpdateUserController } from '../../factories'
+import { makeCreateUserController, makeFindUserByIdController, makeFindUserByNicknameController, makeUpdateUserController, makeDisableUserController } from '../../factories'
 import { adaptRoute } from '../../../../config/web/adapters/express-route-adapter'
 
 export default (router: Router): void => {
@@ -7,4 +7,5 @@ export default (router: Router): void => {
   router.get('/user/find-by-id/:id', adaptRoute(makeFindUserByIdController()))
   router.get('/user/find-by-nickname/:nickname', adaptRoute(makeFindUserByNicknameController()))
   router.put('/user/update/:id', adaptRoute(makeUpdateUserController()))
+  router.put('/user/disable/:id', adaptRoute(makeDisableUserController()))
 }
