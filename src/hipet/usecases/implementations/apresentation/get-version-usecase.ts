@@ -4,7 +4,7 @@ export class ApresentationUseCases implements ApresentationUseCasesInterface {
   getVersion (): any {
     return {
       status: 'SUCCESS',
-      version: '0.0.0',
+      version: '2.0.0',
       description: 'API para o sistema HIPET'
     }
   }
