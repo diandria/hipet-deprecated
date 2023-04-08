@@ -10,5 +10,4 @@ export class PostDTO {
   created_at: Date
   reports_id: string[]
   share_url: string
-  deleted_at?: Date
 }

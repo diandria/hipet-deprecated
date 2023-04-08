@@ -4,7 +4,7 @@
   "description": "API para o sistema HIPET",
   "main": "index.js",
   "scripts": {
-    "build": "npm i && tsc",
+    "build": "tsc",
     "install-dependencie": "npm run install-dependencie",
     "start": "node dist/src/main/server.js",
     "dev": "npm run build && npm start",

@@ -2,7 +2,34 @@ import { Animal } from './animal'
 import { Report } from './report'
 import { User } from './user'
 
-export type StateOptions = 'AC' | 'AL' | 'AP' | 'AM' | 'BA' | 'CE' | 'DF' | 'ES' | 'GO' | 'MA' | 'MT' | 'MS' | 'MG' | 'PA' | 'PB' | 'PR' | 'PE' | 'PI' | 'RJ' | 'RN' | 'RS' | 'RO' | 'RR' | 'SC' | 'SP' | 'SE' | 'TO'
+export enum StateOptions {
+  ac = 'AC',
+  al = 'AL',
+  ap = 'AP',
+  am = 'AM',
+  ba = 'BA',
+  ce = 'CE',
+  df = 'DF',
+  es = 'ES',
+  go = 'GO',
+  ma = 'MA',
+  mt = 'MT',
+  ms = 'MS',
+  mg = 'MG',
+  pa = 'PA',
+  pb = 'PB',
+  pe = 'PE',
+  pi = 'PI',
+  rj = 'RJ',
+  rn = 'RN',
+  rs = 'RS',
+  ro = 'RO',
+  rr = 'RR',
+  sc = 'SC',
+  sp = 'SP',
+  se = 'SE',
+  to = 'TO'
+}
 
 export class Post {
   id: string
@@ -14,5 +41,4 @@ export class Post {
   created_at: Date
   reports: Report[]
   share_url: string
-  deleted_at?: Date
 }
