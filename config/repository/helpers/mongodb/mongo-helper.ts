@@ -48,7 +48,13 @@ export const MongoHelper = {
     return result
   },
 
-  async list (collectionName: string, limitNumber: number = 0): Promise<any> {
+  async listBy (filter: any, limitNumber: number = 0, collectionName: string): Promise<any> {
+    const collection = await MongoHelper.getCollection(collectionName)
+    const result = await collection.find(filter).limit(limitNumber).toArray()
+    return result
+  },
+
+  async list (limitNumber: number = 0, collectionName: string): Promise<any> {
     const collection = await MongoHelper.getCollection(collectionName)
     const result = await collection.find({}).limit(limitNumber).toArray()
     return result
@@ -59,5 +65,11 @@ export const MongoHelper = {
     await collection.updateOne(filter, { $set: object })
     const result = await collection.findOne(filter)
     return result
+  },
+
+  async remove (filter: any, collectionName: string): Promise<any> {
+    const collection = await MongoHelper.getCollection(collectionName)
+    await collection.remove(filter)
+    return true
   }
 }
