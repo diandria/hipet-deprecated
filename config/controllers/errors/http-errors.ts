@@ -22,7 +22,7 @@ export class MissingParamError extends Error {
 
 export class WrongParamError extends Error {
   constructor (error: string) {
-    super(`Error message: ${error}`)
+    super(`Wrong param: ${error}`)
     this.name = 'WrongParamError'
   }
 }

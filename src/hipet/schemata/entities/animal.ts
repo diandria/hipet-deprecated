@@ -1,6 +1,22 @@
-type AnimalTypeOptions = 'CACHORRO' | 'GATO'
-type ColorOptions = 'MANCHADO' | 'PRETO' | 'BRANCO' | 'CINZA' | 'CARAMELO' | 'PINTADO' | 'OUTRO'
-type SizeOptions = 'PEQUENO' | 'MEDIO' | 'GRANDE'
+export enum AnimalTypeOptions {
+  dog = 'CACHORRO',
+  cat = 'GATO'
+}
+
+export enum ColorOptions {
+  spotted = 'MACHADO',
+  black = 'PRETO',
+  white = 'BRANCO',
+  grey = 'CINZA',
+  caramel = 'CARAMELO',
+  other = 'OUTRO'
+}
+
+export enum SizeOptions {
+  small = 'PEQUENO',
+  medium = 'MEDIO',
+  big = 'GRANDE',
+}
 
 type HealthInfo = {
   vaccinated: boolean

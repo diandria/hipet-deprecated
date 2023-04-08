@@ -38,7 +38,6 @@ export class MongoUserRepository implements UserRepository {
       const filter = { [field]: value }
       return await MongoHelper.updateBy(filter, user, collectionName)
     } catch (err) {
-      console.log('CAIU NO CATCH: ', err)
       return null
     }
   }

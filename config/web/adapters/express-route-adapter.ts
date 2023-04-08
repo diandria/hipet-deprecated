@@ -11,7 +11,7 @@ export const adaptRoute = (controller: HttpController) => async (req: Request, r
 
   const response = await controller.handle(request)
 
-  if (response.status >= 200 && response.status < 404) {
+  if (response.status >= 200 && response.status < 300) {
     return res.status(response.status).json(response.body)
   } else {
     return res.status(response.status).json({
