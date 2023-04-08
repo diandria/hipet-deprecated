@@ -30,8 +30,8 @@ export const makeListAllPostController = (): ListAllPostController => {
   const postRepository = new MongoPostRepository({ uuidService })
   const reportRepository = new MongoReportRepository({ uuidService })
   const crytographService = new NodeCryptographService()
-  const findPostByIdUseCase = new FindPostByIdUseCase({ postRepository, userRepository, reportRepository, crytographService })
-  const postUseCases = new ListAllPostUseCase({ postRepository, findPostByIdUseCase })
+  // const findPostByIdUseCase = new FindPostByIdUseCase({ postRepository, userRepository, reportRepository, crytographService })
+  const postUseCases = new ListAllPostUseCase({ postRepository, userRepository, reportRepository, crytographService })
 
   return new ListAllPostController(postUseCases)
 }

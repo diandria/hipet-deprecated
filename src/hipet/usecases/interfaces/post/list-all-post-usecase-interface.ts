@@ -1,4 +1,4 @@
-// import { Post } from '../../../schemata/entities'
+import { Post } from '../../../schemata/entities'
 
 export type ListAllPostRequest = {
   limit?: number
@@ -10,7 +10,7 @@ export enum ListAllPostResultStatusOptions {
 
 export type ListAllPostResult = {
   status: ListAllPostResultStatusOptions
-  posts?: any
+  posts?: Post[]
 }
 
 export interface ListAllPostUseCaseInterface {
