@@ -3,6 +3,7 @@ import { PostRepository, UserRepository } from '../../../repositories/interfaces
 import { CreatePostResult, CreatePostResultStatusOptions, CreatePostUseCaseInterface, PostRequest } from '../../interfaces'
 import { Animal, Post, User } from '../../../schemata/entities'
 import { CryptographService } from '../../../services/interfaces'
+import { generate_share_url } from '../../../logic'
 
 type Dependencies = {
   postRepository: PostRepository
@@ -47,7 +48,7 @@ export class CreatePostUseCase implements CreatePostUseCaseInterface {
     post.description = postDTO.description
     post.created_at = new Date()
     post.reports = []
-    post.share_url = 'share_url'
+    post.share_url = generate_share_url(postDTO._id)
     return post
   }
 

@@ -41,4 +41,13 @@ export class MongoReportRepository implements ReportRepository {
       return false
     }
   }
+
+  async listByPost (postId: string, limit: number = 100): Promise<ReportDTO[]> {
+    try {
+      const filter = { post_id: postId }
+      return await MongoHelper.listBy(filter, limit, collectionName)
+    } catch (err) {
+      return null
+    }
+  }
 }
