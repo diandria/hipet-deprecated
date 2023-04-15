@@ -18,6 +18,11 @@ export enum SizeOptions {
   big = 'GRANDE',
 }
 
+export enum SexOptions {
+  female = 'FEMEA',
+  male = 'MACHO'
+}
+
 type HealthInfo = {
   vaccinated: boolean
   castreated: boolean
@@ -31,4 +36,5 @@ export class Animal {
   size: SizeOptions
   health_info: HealthInfo
   type: AnimalTypeOptions
+  sex: SexOptions
 }
