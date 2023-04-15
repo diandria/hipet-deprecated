@@ -1,7 +1,7 @@
 import { HttpController, HttpRequest, HttpResponse } from '../../../../config/controllers/contracts'
 import { ContentNotFoundError, MissingParamError, WrongParamError } from '../../../../config/controllers/errors'
 import { badRequest, notFound, serverError, success } from '../../../../config/controllers/helpers/http-helpers'
-import { validate_animal_type, validate_color, validate_post_state, validate_size } from '../../logic'
+import { validate_animal_type, validate_color, validate_post_state, validate_size, validate_sex } from '../../logic'
 import { CreatePostUseCaseInterface, CreatePostResultStatusOptions } from '../../usecases/interfaces'
 
 export class CreatePostController implements HttpController {
@@ -31,6 +31,7 @@ export class CreatePostController implements HttpController {
       if (!validate_animal_type(requestData.animal.type)) return badRequest(new WrongParamError(requestData.animal.type))
       if (!validate_color(requestData.animal.color)) return badRequest(new WrongParamError(requestData.animal.color))
       if (!validate_size(requestData.animal.size)) return badRequest(new WrongParamError(requestData.animal.size))
+      if (!validate_sex(requestData.animal.sex)) return badRequest(new WrongParamError(requestData.animal.sex))
 
       const result = await this.userUseCases.create(requestData)
 
