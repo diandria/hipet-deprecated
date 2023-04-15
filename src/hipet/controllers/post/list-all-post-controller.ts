@@ -11,7 +11,7 @@ export class ListAllPostController implements HttpController {
     try {
       const requestData = httpRequest.query
 
-      const result = await this.postUseCases.list(requestData)
+      const result = await this.postUseCases.list({ limit: Number(requestData.limit) })
 
       return success(result)
     } catch (error) {
