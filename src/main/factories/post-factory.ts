@@ -1,7 +1,7 @@
-import { CreatePostController, FindPostByIdController, ListAllPostController, ListPostByAnimalTypeController, ListPostByUserController } from '../../hipet/controllers'
+import { CreatePostController, FindPostByIdController, GetPostShareUrlController, ListAllPostController, ListPostByAnimalTypeController, ListPostByUserController } from '../../hipet/controllers'
 import { MongoPostRepository, MongoReportRepository, MongoUserRepository } from '../../hipet/repositories/implementations'
 import { NodeCryptographService, NodeUuidService } from '../../hipet/services/implementations'
-import { CreatePostUseCase, FindPostByIdUseCase, ListAllPostUseCase, ListPostByAnimalTypeUseCase, ListPostByUserUseCase } from '../../hipet/usecases/implementations'
+import { CreatePostUseCase, FindPostByIdUseCase, GetPostShareUrlUseCase, ListAllPostUseCase, ListPostByAnimalTypeUseCase, ListPostByUserUseCase } from '../../hipet/usecases/implementations'
 
 export const makeCreatePostController = (): CreatePostController => {
   const uuidService = new NodeUuidService()
@@ -55,4 +55,12 @@ export const makeListPostByAnimalTypeController = (): ListPostByAnimalTypeContro
   const postUseCases = new ListPostByAnimalTypeUseCase({ postRepository, userRepository, reportRepository, crytographService })
 
   return new ListPostByAnimalTypeController(postUseCases)
+}
+
+export const makeGetPostShareUrlController = (): GetPostShareUrlController => {
+  const uuidService = new NodeUuidService()
+  const postRepository = new MongoPostRepository({ uuidService })
+  const postUseCases = new GetPostShareUrlUseCase({ postRepository })
+
+  return new GetPostShareUrlController(postUseCases)
 }
