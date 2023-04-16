@@ -33,6 +33,8 @@ export class CreatePostController implements HttpController {
       if (!validate_size(requestData.animal.size)) return badRequest(new WrongParamError(requestData.animal.size))
       if (!validate_sex(requestData.animal.sex)) return badRequest(new WrongParamError(requestData.animal.sex))
 
+      requestData.animal.age = requestData.animal.age ? Number(requestData.animal.age) : null
+
       const result = await this.userUseCases.create(requestData)
 
       if (result.status === CreatePostResultStatusOptions.user_not_found) {
