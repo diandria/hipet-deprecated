@@ -69,6 +69,7 @@ export class CreatePostUseCase implements CreatePostUseCaseInterface {
     animal.health_info = postRequest.animal.health_info
     animal.type = postRequest.animal.type
     animal.sex = postRequest.animal.sex
+    if (postRequest.animal.age) animal.age = postRequest.animal.age
     postDTO.customer_id = postRequest.customer_id
     postDTO.state = postRequest.state
     postDTO.description = postRequest.description
