@@ -51,17 +51,17 @@ export class FindPostByIdUseCase implements FindPostByIdUseCaseInterface {
     return user
   }
 
-  private to_post (postDTO: PostDTO, userDTO: UserDTO, reportList: ReportDTO[]): Post {
+  private async to_post (postDTO: PostDTO, userDTO: UserDTO, reportList: ReportDTO[]): Promise<Post> {
     const post = new Post()
     post.id = postDTO._id
     post.user = this.to_user(userDTO)
     post.animal = postDTO.animal
     post.state = postDTO.state
-    if (postDTO.picture) post.picture = postDTO.picture
     post.description = postDTO.description
     post.created_at = new Date()
     post.reports = reportList.map(reportDto => this.to_report(reportDto))
     post.share_url = generate_share_url(postDTO._id)
+    if (postDTO.picture) post.picture = postDTO.picture
     return post
   }
 
@@ -84,7 +84,7 @@ export class FindPostByIdUseCase implements FindPostByIdUseCaseInterface {
 
     return {
       status: FindPostByIdResultStatusOptions.success,
-      post: this.to_post(post, user, reportList)
+      post: await this.to_post(post, user, reportList)
     }
   }
 }

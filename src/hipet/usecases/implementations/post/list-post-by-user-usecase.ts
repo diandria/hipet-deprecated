@@ -47,7 +47,6 @@ export class ListPostByUserUseCase implements ListPostByUserUseCaseInterface {
     user.created_at = userDTO.created_at
     if (userDTO.document) user.document = this.crytographService.decrypt(userDTO.document)
     if (userDTO.donation_link) user.donation_link = userDTO.donation_link
-
     return user
   }
 
@@ -57,11 +56,11 @@ export class ListPostByUserUseCase implements ListPostByUserUseCaseInterface {
     post.user = this.to_user(userDTO)
     post.animal = postDTO.animal
     post.state = postDTO.state
-    if (postDTO.picture) post.picture = postDTO.picture
     post.description = postDTO.description
     post.created_at = new Date()
     post.reports = reportList.map(reportDto => this.to_report(reportDto))
     post.share_url = generate_share_url(postDTO._id)
+    if (postDTO.picture) post.picture = postDTO.picture
     return post
   }
 
