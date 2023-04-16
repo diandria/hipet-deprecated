@@ -13,3 +13,11 @@ export class User {
   created_at: Date
   disabled_at?: Date
 }
+
+export class SimpleUser {
+  id: string
+  type: UserTypeOptions
+  name: string
+  email: string
+  nickname: string
+}

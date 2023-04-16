@@ -1,3 +1,5 @@
+import { SimpleUser } from '../../../schemata/entities'
+
 export type LoginUserRequest = {
   email: string
   password: string
@@ -12,6 +14,7 @@ export enum LoginUserResultStatusOptions {
 export type LoginUserResult = {
   status: LoginUserResultStatusOptions
   authentication_code?: String
+  user?: SimpleUser
 }
 
 export interface LoginUserUseCaseInterface {

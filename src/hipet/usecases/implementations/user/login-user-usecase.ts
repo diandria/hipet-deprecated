@@ -1,6 +1,8 @@
 import { UserRepository } from '../../../repositories/interfaces'
 import { LoginUserResult, LoginUserResultStatusOptions, LoginUserUseCaseInterface, LoginUserRequest } from '../../interfaces/user'
 import { CryptographService, UuidService } from '../../../services/interfaces'
+import { SimpleUser } from '../../../schemata/entities'
+import { UserDTO } from '../../../repositories/models'
 
 type Dependencies = {
   userRepository: UserRepository
@@ -17,6 +19,17 @@ export class LoginUserUseCase implements LoginUserUseCaseInterface {
     this.userRepository = dependencies.userRepository
     this.crytographService = dependencies.crytographService
     this.uuidService = dependencies.uuidService
+  }
+
+  private to_simple_user (userDTO: UserDTO): SimpleUser {
+    const simpleUser = new SimpleUser()
+    simpleUser.id = userDTO._id
+    simpleUser.type = userDTO.type
+    simpleUser.name = userDTO.name
+    simpleUser.email = userDTO.email
+    simpleUser.nickname = userDTO.nickname
+
+    return simpleUser
   }
 
   async authenticate (userRequest: LoginUserRequest): Promise<LoginUserResult> {
@@ -37,7 +50,8 @@ export class LoginUserUseCase implements LoginUserUseCaseInterface {
     const authenticationCode = this.uuidService.uuid()
     return {
       status: LoginUserResultStatusOptions.success,
-      authentication_code: authenticationCode
+      authentication_code: authenticationCode,
+      user: this.to_simple_user(user)
     }
   }
 }
