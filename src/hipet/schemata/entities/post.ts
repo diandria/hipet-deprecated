@@ -1,6 +1,6 @@
 import { Animal } from './animal'
 import { Report } from './report'
-import { User } from './user'
+import { BasicUser } from './user'
 
 export enum StateOptions {
   ac = 'AC',
@@ -33,7 +33,7 @@ export enum StateOptions {
 
 export class Post {
   id: string
-  user: User
+  user: BasicUser
   animal: Animal
   state: StateOptions
   picture?: string
