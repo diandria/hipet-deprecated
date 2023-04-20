@@ -23,3 +23,14 @@ export class SimpleUser {
   nickname: string
   picture?: string
 }
+
+export class BasicUser {
+  id: string
+  type: UserTypeOptions
+  name: string
+  email: string
+  nickname: string
+  phone_number: string
+  donation_link?: string
+  picture?: string
+}

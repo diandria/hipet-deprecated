@@ -1,14 +1,13 @@
 import { CreatePostController, DeletePostController, FindPostByIdController, GetPostShareUrlController, ListAllPostController, ListPostByAnimalTypeController, ListPostByUserController } from '../../hipet/controllers'
 import { MongoPostRepository, MongoReportRepository, MongoUserRepository } from '../../hipet/repositories/implementations'
-import { NodeCryptographService, NodeUuidService } from '../../hipet/services/implementations'
+import { NodeUuidService } from '../../hipet/services/implementations'
 import { CreatePostUseCase, DeletePostUseCase, FindPostByIdUseCase, GetPostShareUrlUseCase, ListAllPostUseCase, ListPostByAnimalTypeUseCase, ListPostByUserUseCase } from '../../hipet/usecases/implementations'
 
 export const makeCreatePostController = (): CreatePostController => {
   const uuidService = new NodeUuidService()
   const userRepository = new MongoUserRepository({ uuidService })
   const postRepository = new MongoPostRepository({ uuidService })
-  const crytographService = new NodeCryptographService()
-  const reportUseCases = new CreatePostUseCase({ postRepository, userRepository, crytographService })
+  const reportUseCases = new CreatePostUseCase({ postRepository, userRepository })
 
   return new CreatePostController(reportUseCases)
 }
@@ -18,8 +17,7 @@ export const makeFindPostByIdController = (): FindPostByIdController => {
   const userRepository = new MongoUserRepository({ uuidService })
   const postRepository = new MongoPostRepository({ uuidService })
   const reportRepository = new MongoReportRepository({ uuidService })
-  const crytographService = new NodeCryptographService()
-  const postUseCases = new FindPostByIdUseCase({ postRepository, userRepository, reportRepository, crytographService })
+  const postUseCases = new FindPostByIdUseCase({ postRepository, userRepository, reportRepository })
 
   return new FindPostByIdController(postUseCases)
 }
@@ -29,8 +27,7 @@ export const makeListAllPostController = (): ListAllPostController => {
   const userRepository = new MongoUserRepository({ uuidService })
   const postRepository = new MongoPostRepository({ uuidService })
   const reportRepository = new MongoReportRepository({ uuidService })
-  const crytographService = new NodeCryptographService()
-  const postUseCases = new ListAllPostUseCase({ postRepository, userRepository, reportRepository, crytographService })
+  const postUseCases = new ListAllPostUseCase({ postRepository, userRepository, reportRepository })
 
   return new ListAllPostController(postUseCases)
 }
@@ -40,8 +37,7 @@ export const makeListPostByUserController = (): ListPostByUserController => {
   const userRepository = new MongoUserRepository({ uuidService })
   const postRepository = new MongoPostRepository({ uuidService })
   const reportRepository = new MongoReportRepository({ uuidService })
-  const crytographService = new NodeCryptographService()
-  const postUseCases = new ListPostByUserUseCase({ postRepository, userRepository, reportRepository, crytographService })
+  const postUseCases = new ListPostByUserUseCase({ postRepository, userRepository, reportRepository })
 
   return new ListPostByUserController(postUseCases)
 }
@@ -51,8 +47,7 @@ export const makeListPostByAnimalTypeController = (): ListPostByAnimalTypeContro
   const userRepository = new MongoUserRepository({ uuidService })
   const postRepository = new MongoPostRepository({ uuidService })
   const reportRepository = new MongoReportRepository({ uuidService })
-  const crytographService = new NodeCryptographService()
-  const postUseCases = new ListPostByAnimalTypeUseCase({ postRepository, userRepository, reportRepository, crytographService })
+  const postUseCases = new ListPostByAnimalTypeUseCase({ postRepository, userRepository, reportRepository })
 
   return new ListPostByAnimalTypeController(postUseCases)
 }

@@ -1,28 +1,24 @@
 import { PostDTO, ReportDTO, UserDTO } from '../../../repositories/models'
 import { PostRepository, ReportRepository, UserRepository } from '../../../repositories/interfaces'
 import { ListPostByUserResult, ListPostByUserResultStatusOptions, ListPostByUserUseCaseInterface, ListPostByUserRequest } from '../../interfaces'
-import { Post, User, Report } from '../../../schemata/entities'
+import { Post, BasicUser, Report } from '../../../schemata/entities'
 import { generate_share_url } from '../../../logic'
-import { CryptographService } from '../../../services/interfaces'
 
 type Dependencies = {
   postRepository: PostRepository
   userRepository: UserRepository
   reportRepository: ReportRepository
-  crytographService: CryptographService
 }
 
 export class ListPostByUserUseCase implements ListPostByUserUseCaseInterface {
   private readonly postRepository: PostRepository
   private readonly userRepository: UserRepository
   private readonly reportRepository: ReportRepository
-  private readonly crytographService: CryptographService
 
   constructor (dependencies: Dependencies) {
     this.postRepository = dependencies.postRepository
     this.userRepository = dependencies.userRepository
     this.reportRepository = dependencies.reportRepository
-    this.crytographService = dependencies.crytographService
   }
 
   private to_report (reportDTO: ReportDTO): Report {
@@ -35,17 +31,14 @@ export class ListPostByUserUseCase implements ListPostByUserUseCaseInterface {
     return report
   }
 
-  private to_user (userDTO: UserDTO): User {
-    const user = new User()
+  private to_basic_user (userDTO: UserDTO): BasicUser {
+    const user = new BasicUser()
     user.id = userDTO._id
     user.type = userDTO.type
     user.name = userDTO.name
     user.email = userDTO.email
     user.nickname = userDTO.nickname
     user.phone_number = userDTO.phone_number
-    user.password = this.crytographService.decrypt(userDTO.password)
-    user.created_at = userDTO.created_at
-    if (userDTO.document) user.document = this.crytographService.decrypt(userDTO.document)
     if (userDTO.donation_link) user.donation_link = userDTO.donation_link
     if (userDTO.picture) user.picture = userDTO.picture
 
@@ -55,7 +48,7 @@ export class ListPostByUserUseCase implements ListPostByUserUseCaseInterface {
   private to_post (postDTO: PostDTO, userDTO: UserDTO, reportList: ReportDTO[]): Post {
     const post = new Post()
     post.id = postDTO._id
-    post.user = this.to_user(userDTO)
+    post.user = this.to_basic_user(userDTO)
     post.animal = postDTO.animal
     post.state = postDTO.state
     post.description = postDTO.description
