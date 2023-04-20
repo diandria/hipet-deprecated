@@ -28,6 +28,7 @@ export class LoginUserUseCase implements LoginUserUseCaseInterface {
     simpleUser.name = userDTO.name
     simpleUser.email = userDTO.email
     simpleUser.nickname = userDTO.nickname
+    if (userDTO.picture) simpleUser.picture = userDTO.picture
 
     return simpleUser
   }

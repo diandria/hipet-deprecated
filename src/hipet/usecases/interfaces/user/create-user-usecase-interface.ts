@@ -9,6 +9,7 @@ export type UserRequest = {
   password: string
   donation_link?: string
   document?: string
+  picture?: string
 }
 
 export enum CreateUserResultStatusOptions {
