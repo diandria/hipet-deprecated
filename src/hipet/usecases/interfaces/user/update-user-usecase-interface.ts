@@ -8,6 +8,7 @@ export type UpdateUserRequest = {
   phone_number?: string
   password?: string
   donation_link?: string
+  picture?: string
 }
 
 export enum UpdateUserResultStatusOptions {

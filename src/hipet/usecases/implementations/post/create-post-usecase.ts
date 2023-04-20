@@ -34,6 +34,7 @@ export class CreatePostUseCase implements CreatePostUseCaseInterface {
     user.created_at = userDTO.created_at
     if (userDTO.document) user.document = this.crytographService.decrypt(userDTO.document)
     if (userDTO.donation_link) user.donation_link = userDTO.donation_link
+    if (userDTO.picture) user.picture = userDTO.picture
 
     return user
   }

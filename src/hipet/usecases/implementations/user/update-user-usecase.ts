@@ -31,6 +31,7 @@ export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
     if (userDTO.document) user.document = this.crytographService.decrypt(userDTO.document)
     if (userDTO.donation_link) user.donation_link = userDTO.donation_link
     if (userDTO.disabled_at) user.disabled_at = userDTO.disabled_at
+    if (userDTO.picture) user.picture = userDTO.picture
 
     return user
   }

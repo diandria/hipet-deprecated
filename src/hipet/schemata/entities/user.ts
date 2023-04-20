@@ -12,6 +12,7 @@ export class User {
   document?: string
   created_at: Date
   disabled_at?: Date
+  picture?: string
 }
 
 export class SimpleUser {
@@ -20,4 +21,5 @@ export class SimpleUser {
   name: string
   email: string
   nickname: string
+  picture?: string
 }

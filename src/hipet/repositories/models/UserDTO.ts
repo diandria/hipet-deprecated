@@ -12,4 +12,5 @@ export class UserDTO {
   document?: string
   created_at: Date
   disabled_at?: Date
+  picture?: string
 }
